@@ -1,0 +1,42 @@
+version: 2
+models:
+  - name: stg_fxmacrodata
+    description: "Lossless public records with additive, portable analysis columns."
+    columns:
+      - name: operation
+        description: "The exact public operation or prefixed MCP tool name."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fxmacrodata_operation_catalog')
+                field: name
+      - name: source_url
+        data_tests: [not_null]
+      - name: record_id
+        description: "Stable content identity; repeated snapshots may share an identity."
+        data_tests: [not_null]
+      - name: date
+        description: "Original observation date; never treated as a release timestamp."
+      - name: announcement_datetime
+        description: "Original timestamp string; unknown publication times remain null."
+      - name: value
+        description: "Nullable numeric projection; value_text and record_json retain the original."
+      - name: record_json
+        description: "Original record JSON, including revisions and source-specific fields."
+        data_tests: [not_null]
+      - name: response_json
+        description: "Complete response envelope and metadata, including empty responses."
+        data_tests: [not_null]
+  - name: fxmacrodata_numeric_records
+    description: "All ingested records with a numeric value, retaining their complete JSON."
+  - name: fxmacrodata_timed_records
+    description: "All ingested records carrying an original announcement timestamp."
+seeds:
+  - name: fxmacrodata_operation_catalog
+    description: "Public operation names, routes, descriptions and input schemas."
+    columns:
+      - name: name
+        data_tests: [not_null, unique]
+      - name: input_schema_json
+        data_tests: [not_null]

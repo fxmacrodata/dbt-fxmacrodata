@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: fxmacrodata
+    database: "{{ var('fxmacrodata_database', target.database) }}"
+    schema: "{{ var('fxmacrodata_schema', target.schema) }}"
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    tables:
+      - name: records
+        identifier: "{{ var('fxmacrodata_table', 'fxmacrodata_records') }}"
+        description: "FXMacroData public records loaded by your ingestion pipeline."

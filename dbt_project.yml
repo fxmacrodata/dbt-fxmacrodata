@@ -1,0 +1,14 @@
+name: fxmacrodata
+version: '0.1.0'
+config-version: 2
+require-dbt-version: [">=1.11.15", "<3.0.0"]
+model-paths: ["models"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+models:
+  fxmacrodata:
+    +materialized: view
+seeds:
+  fxmacrodata:
+    +quote_columns: true

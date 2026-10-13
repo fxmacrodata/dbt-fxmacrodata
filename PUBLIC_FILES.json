@@ -1,0 +1,17 @@
+[
+  "LICENSE",
+  "PUBLIC_FILES.json",
+  "README.md",
+  "dbt_project.yml",
+  "macros/columns.sql",
+  "macros/records.sql",
+  "models/marts/fxmacrodata_numeric_records.sql",
+  "models/marts/fxmacrodata_timed_records.sql",
+  "models/schema.yml",
+  "models/staging/sources.yml",
+  "models/staging/stg_fxmacrodata.sql",
+  "seeds/fxmacrodata_operation_catalog.csv",
+  "tests/envelope_preservation.sql",
+  "tests/staging_row_count.sql",
+  "tests/unknown_time_preservation.sql"
+]
